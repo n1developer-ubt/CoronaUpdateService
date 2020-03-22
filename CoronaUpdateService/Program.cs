@@ -23,6 +23,7 @@ namespace CoronaUpdateService
             });
             th.Start();
             CreateHostBuilder(args).Build().Run();
+            //"http://localhost:5000", "http://*:80"
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -30,6 +31,7 @@ namespace CoronaUpdateService
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("https://*:9080", "http://*:9070");
                 });
     }
 }
