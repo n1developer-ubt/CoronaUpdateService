@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoronaUpdateService.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoronaUpdateService.Controllers
@@ -11,7 +12,7 @@ namespace CoronaUpdateService.Controllers
         [HttpGet("api/v1/NewData")]
         public ActionResult Get()
         {
-
+            return Ok(Json(UpdateDataService.GetUpdatedData()));
         }
     }
 }

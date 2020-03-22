@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using CoronaUpdateService.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MySql.Data.MySqlClient;
 
 namespace CoronaUpdateService
 {
@@ -13,6 +16,12 @@ namespace CoronaUpdateService
     {
         public static void Main(string[] args)
         {
+            Thread th = new Thread(() =>
+            {
+                UpdateDataService service = new UpdateDataService();
+                service.Start();
+            });
+            th.Start();
             CreateHostBuilder(args).Build().Run();
         }
 

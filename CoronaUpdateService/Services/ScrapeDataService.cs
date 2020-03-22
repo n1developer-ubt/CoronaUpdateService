@@ -3,24 +3,25 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
+using CoronaDataScraper;
 using HtmlAgilityPack;
 
-namespace CoronaDataScraper
+namespace CoronaUpdateService.Services
 {
-    class Program
+    public class ScrapeDataService
     {
         private static string WebSiteToScrape = "https://www.worldometers.info/coronavirus/";
-        static void Main(string[] args)
+        public static List<CountryData> GetNewData()
         {
-            //string source = WebSource(WebSiteToScrape);
             HtmlDocument doc = new HtmlDocument();
-            doc.LoadHtml(File.ReadAllText("data.html"));
+            doc.LoadHtml(WebSource(WebSiteToScrape));
 
             HtmlNode table = doc.DocumentNode.SelectSingleNode("//*[@id=\"main_table_countries_today\"]");
 
             HtmlNode rows = table.SelectSingleNode("//tbody[1]");
 
-            List<HtmlNode> td = rows.Descendants().Where((e) => e.Name=="tr").ToList();
+            List<HtmlNode> td = rows.Descendants().Where((e) => e.Name == "tr").ToList();
 
             List<CountryData> data = new List<CountryData>();
 
@@ -29,13 +30,11 @@ namespace CoronaDataScraper
                 CountryData newData = new CountryData();
                 newData.Load(node);
                 data.Add(newData);
-                newData.Print();
+                //newData.Print();
             }
-            Console.WriteLine(data.Count);
-            Console.ReadKey();
-            Console.WriteLine("Hello World!");
-        }
 
+            return data;
+        }
         private static string WebSource(string website)
         {
             string source = null;
@@ -46,5 +45,6 @@ namespace CoronaDataScraper
 
             return source;
         }
+
     }
 }
