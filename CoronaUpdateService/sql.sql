@@ -1,0 +1,18 @@
+DROP DATABASE IF EXISTS CoronaUpdate;
+CREATE DATABASE IF NOT EXISTS CoronaUpdate;
+
+USE CoronaUpdate;
+DROP TABLE IF EXISTS NewData;
+CREATE TABLE IF NOT EXISTS NewData
+(
+
+	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	NAME CHAR(255),
+	TotalCases INT,
+	NewCases INT,
+	TotalDeaths INT,
+	NewDeaths INT,
+	TotalRecoveredActiveCases INT,
+	Serious INT,
+	TotCases DOUBLE
+);
