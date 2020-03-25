@@ -69,7 +69,7 @@ namespace CoronaUpdateService.Services
                     
                 }
             }
-            List<CountryData> updatedData = ScrapeDataService.GetNewData();
+            AllData updatedData = ScrapeDataService.GetNewData();
             UpdateFile(updatedData);
             while (true)
             {
@@ -90,20 +90,9 @@ namespace CoronaUpdateService.Services
             System.Diagnostics.Debug.Write("Service Stopped!");
             _timer.Stop();
         }
-        private void UpdateFile(List<CountryData> data)
+        private void UpdateFile(AllData data)
         {
-            AllData d = new AllData();
-            d.TotalCases = data.Sum(e => e.TotalCases).ToString();
-            d.ActiveCases = data.Sum(e => e.ActiveCases).ToString();
-            d.NewCases= data.Sum(e => e.NewCases).ToString();
-            d.NewDeaths= data.Sum(e => e.NewDeaths).ToString();
-            d.TotalDeaths= data.Sum(e => e.TotalDeaths).ToString();
-            d.TotalRecovered= data.Sum(e => e.TotalRecovered).ToString();
-            d.Serious = data.Sum(e => e.Serious).ToString();
-            d.TotalCases = data.Sum(e => e.TotCases).ToString();
-            d.CountryData = data;
-
-            string dx = JsonConvert.SerializeObject(d);
+            string dx = JsonConvert.SerializeObject(data);
             while (true)
             {
                 try

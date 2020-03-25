@@ -12,7 +12,7 @@ namespace CoronaUpdateService.Controllers
         [HttpGet("api/v1/NewData")]
         public ActionResult Get()
         {
-            return Ok(Json(UpdateDataService.GetUpdatedData()));
+            return Content(UpdateDataService.GetUpdatedData(), "application/json");
         }
     }
 }
