@@ -12,6 +12,7 @@ namespace CoronaUpdateService.Controllers
         [HttpGet("api/v1/NewData")]
         public ActionResult Get()
         {
+            System.Diagnostics.Debug.Write("Hello");
             return Content(UpdateDataService.GetUpdatedData(), "application/json");
         }
     }

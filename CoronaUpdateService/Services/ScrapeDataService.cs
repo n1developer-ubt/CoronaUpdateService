@@ -12,7 +12,7 @@ namespace CoronaUpdateService.Services
 {
     public class ScrapeDataService
     {
-        private static string WebSiteToScrape = "https://www.worldometers.info/coronavirus/";
+        private static string WebSiteToScrape = "http://www.worldometers.info/coronavirus/";
         public static AllData GetNewData()
         {
             HtmlDocument doc = new HtmlDocument();

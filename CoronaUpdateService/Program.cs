@@ -31,7 +31,7 @@ namespace CoronaUpdateService
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls("https://*:9080", "http://*:9070");
+                    webBuilder.UseUrls(/*"https://*:9080"*/"http://*:9070");
                 });
     }
 }
